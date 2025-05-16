@@ -1,8 +1,8 @@
 import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
-def get_sales_data():
+def get_sales_data(products: Optional[List[str]] = None) -> List[Dict[str, Any]]:
     data = [
         {
             "date": datetime.date(2024, 1, 10),
@@ -250,6 +250,8 @@ def get_sales_data():
             "revenue": 3368.75,
         },
     ]
+    if products:
+        return [item for item in data if item["product_id"] in products]
     return data
 
 
