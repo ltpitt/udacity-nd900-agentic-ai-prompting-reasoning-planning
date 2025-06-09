@@ -7,12 +7,15 @@ Before we get started on our course, let's take some time to set up and tidy our
 In this directory, you will find the starter and solution folders, each containing a Jupyter notebook and a README.md file.
 
 ```
+❯ tree
 .
 ├── README.md
 ├── solution
-│   ├── introduction-to-prompting-for-llm-reasoning-and-planning.ipynb
-│   └── README.md
+│   ├── README.md
+│   └── introduction-to-prompting-for-llm-reasoning-and-planning.ipynb
 └── starter
-    ├── introduction-to-prompting-for-llm-reasoning-and-planning.ipynb
-    └── README.md
+    ├── README.md
+    └── introduction-to-prompting-for-llm-reasoning-and-planning.ipynb
+
+3 directories, 5 files
 ```
