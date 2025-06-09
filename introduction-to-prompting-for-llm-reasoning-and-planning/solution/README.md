@@ -1,3 +1,3 @@
 # Solution
 
-This folder contains the solution to the exercise.
+This folder contains the solution Jupyter notebook for the exercise.
