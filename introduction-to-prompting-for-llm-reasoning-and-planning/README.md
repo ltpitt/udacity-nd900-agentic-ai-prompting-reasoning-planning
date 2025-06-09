@@ -1,10 +1,8 @@
-# Introduction to Prompting for LLM Reasoning and Planning
+# Purpose of This Directory
 
-Before we get started on our course, let's take some time to set up and tidy our workspaces. As an agentic twist on the matter, we will guide a Large Language Model (LLM) through a series of prompt refinements to create a practical plan to organize your personal work area.
+This directory contains exercises for the lesson on Introduction to Prompting for LLM Reasoning and Planning.
 
 ## Folder Structure
-
-In this directory, you will find the starter and solution folders, each containing a Jupyter notebook and a README.md file.
 
 ```
 ❯ tree

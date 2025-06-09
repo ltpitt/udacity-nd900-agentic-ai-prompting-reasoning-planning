@@ -1,10 +1,8 @@
 # Purpose of This Directory
 
-This directory should contain any files and instructions necessary for exercises created for this lesson.
+This directory contains exercises for the lesson on Role-Based Prompting.
 
 ## Folder Structure
-
-Each exercise should be contained in its own folder using the naming convention of `concept#-name-of-concept`. See example below:
 
 ```
 ❯ tree                            
