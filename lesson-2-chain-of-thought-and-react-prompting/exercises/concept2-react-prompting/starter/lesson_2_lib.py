@@ -1,7 +1,49 @@
 import datetime
 from typing import Any, Dict, List, Optional
+from enum import Enum
+from IPython.display import Markdown, display
 
+class OpenAIModels(str, Enum):
+    GPT_4O_MINI = "gpt-4o-mini"
+    GPT_41_MINI = "gpt-4.1-mini"
+    GPT_41_NANO = "gpt-4.1-nano"
 
+# Helper function to display responses as Markdown, horizontally
+def display_responses(*args):
+    markdown_string = "<table><tr>"
+    # Headers
+    for arg in args:
+        markdown_string += f"<th>System Prompt:<br />{arg['system_prompt']}<br /><br />"
+        markdown_string += f"User Prompt:<br />{arg['user_prompt']}</th>"
+    markdown_string += "</tr>"
+    # Rows
+    markdown_string += "<tr>"
+    for arg in args:
+        markdown_string += f"<td>Response:<br />{arg['response']}</td>"
+    markdown_string += "</tr></table>"
+    display(Markdown(markdown_string))
+
+def get_completion(messages = None, model="gpt-4.1-nano", client = None):
+    """
+    Function to get a completion from the OpenAI API.
+    Args:
+        system_prompt: The system prompt
+        user_prompt: The user prompt
+        model: The model to use (default is gpt-4.1-mini)
+    Returns:
+        The completion text
+    """
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=0.7,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+    
 def get_sales_data(products: Optional[List[str]] = None) -> List[Dict[str, Any]]:
     data = [
         {

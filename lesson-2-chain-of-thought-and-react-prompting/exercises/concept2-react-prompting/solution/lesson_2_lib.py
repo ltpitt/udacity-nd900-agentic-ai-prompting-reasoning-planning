@@ -1,20 +1,29 @@
 import datetime
-from enum import Enum
 from typing import Any, Dict, List, Optional
-from openai import OpenAI
-from IPython.display import display, Markdown
-
+from enum import Enum
+from IPython.display import Markdown, display
 
 class OpenAIModels(str, Enum):
     GPT_4O_MINI = "gpt-4o-mini"
     GPT_41_MINI = "gpt-4.1-mini"
     GPT_41_NANO = "gpt-4.1-nano"
 
+# Helper function to display responses as Markdown, horizontally
+def display_responses(*args):
+    markdown_string = "<table><tr>"
+    # Headers
+    for arg in args:
+        markdown_string += f"<th>System Prompt:<br />{arg['system_prompt']}<br /><br />"
+        markdown_string += f"User Prompt:<br />{arg['user_prompt']}</th>"
+    markdown_string += "</tr>"
+    # Rows
+    markdown_string += "<tr>"
+    for arg in args:
+        markdown_string += f"<td>Response:<br />{arg['response']}</td>"
+    markdown_string += "</tr></table>"
+    display(Markdown(markdown_string))
 
-MODEL = OpenAIModels.GPT_41_NANO
-
-
-def get_completion(messages=None, system_prompt=None, user_prompt=None, model=MODEL, client=None, temperature=0.7):
+def get_completion(messages = None, model="gpt-4.1-nano", client = None):
     """
     Function to get a completion from the OpenAI API.
     Args:
@@ -24,41 +33,17 @@ def get_completion(messages=None, system_prompt=None, user_prompt=None, model=MO
     Returns:
         The completion text
     """
-    if client is None:
-        raise ValueError("OpenAI client must be provided")
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=0.7,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"An error occurred: {e}"
 
-    messages = list(messages or [])
-    if system_prompt:
-        messages.insert(0, {"role": "system", "content": system_prompt})
-    if user_prompt:
-        messages.append({"role": "user", "content": user_prompt})
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        temperature=temperature,
-    )
-    return response.choices[0].message.content
-
-
-def display_responses(*args, user_prompt_limit=500):
-    """Helper function to display responses as Markdown, horizontally."""
-    markdown_string = "<table><tr>"
-    # Headers
-    for arg in args:
-        markdown_string += f"<th>System Prompt:<br />{arg['system_prompt']}<br /><br />"
-        markdown_string += f"User Prompt:<br />{arg['user_prompt'][:user_prompt_limit]}"
-        if len(arg["user_prompt"]) > user_prompt_limit:
-            markdown_string += "... [truncated]"
-        markdown_string += "</th>"
-    markdown_string += "</tr>"
-    # Rows
-    markdown_string += "<tr>"
-    for arg in args:
-        markdown_string += f"<td>Response:<br />{arg['response']}</td>"
-    markdown_string += "</tr></table>"
-    display(Markdown(markdown_string))
-
-
+    
 def get_sales_data(products: Optional[List[str]] = None) -> List[Dict[str, Any]]:
     data = [
         {
