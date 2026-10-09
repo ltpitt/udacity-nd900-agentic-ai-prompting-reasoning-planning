@@ -1,37 +1,46 @@
-# Purpose of This Repo
+# Udacity Agentic AI ND900: Prompting for Effective LLM Reasoning and Planning
 
-This repo is meant to be used to keep things organized during content development and act as the source of truth for all projects and exercises related to this course.
+Personal study repository for the **Agentic AI ND900 Nanodegree** section **Prompting for Effective LLM Reasoning and Planning**. It organizes the available course notebooks, exercises, and project materials.
 
-## Folder Structure
+This is a learner-maintained repository, not an official Udacity repository.
 
-### Lesson Folder
+## Contents
 
-This repo contains a folder for each `lesson` and one `project` folder.
+- [`introduction-to-prompting-for-llm-reasoning-and-planning/`](./introduction-to-prompting-for-llm-reasoning-and-planning/) — Introduction and model-selection notebooks.
+- [`lesson-1-role-based-prompting/`](./lesson-1-role-based-prompting/) — Role-based prompting exercises.
+- [`lesson-2-chain-of-thought-and-react-prompting/`](./lesson-2-chain-of-thought-and-react-prompting/) — Chain-of-thought and ReAct prompting exercises.
+- [`lesson-3-prompt-instruction-refinement/`](./lesson-3-prompt-instruction-refinement/) — Prompt and instruction refinement exercises.
+- [`lesson-4-chaining-prompts-for-agentic-reasoning/`](./lesson-4-chaining-prompts-for-agentic-reasoning/) — Chaining prompts for agentic reasoning.
+- [`lesson-5-implementing-llm-feedback-loops/`](./lesson-5-implementing-llm-feedback-loops/) — LLM feedback-loop exercises.
+- [`project/`](./project/) — Course project materials.
 
-Example
+Lessons generally include starter notebooks and, where provided, solution notebooks.
+
+## Local setup
+
+Python 3 and `venv` are required. From the repository root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip install ipykernel
+python -m ipykernel install --user \
+  --name udacity-agentic-ai-nd900 \
+  --display-name "Python (Udacity Agentic AI ND900)"
 ```
-lesson-1-hello
-lesson-2-world
-lesson-3-foo
-lesson-4-bar
-project
+
+In VS Code, open a notebook and select the **Python (Udacity Agentic AI ND900)** kernel. On Windows PowerShell, activate the environment with:
+
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m pip install ipykernel
 ```
 
-Each `lesson` folder is named using the naming convention of `lesson-#-name-of-lesson`.
+Some exercises call an OpenAI-compatible API and require course-provided credentials. Follow the relevant notebook instructions and keep API keys in environment variables or another local secret store; never commit credentials.
 
-Example
-```
-lesson-1-hello
-```
+## Attribution and usage
 
-Four lesson folders have been provided as a template; However, you may need to add more or possibly use less than four depending on what is needed.
-
-If you require an additional lesson folder, you can make a copy of the folder and paste it into the root directory.
-
-### Exercises Folder
-
-Each `lesson` folder contains an `exercises` folder. This `exercises` folder should contain all files and instructions necessary for the exercises along with the solution. The solutions for these exercises will be shared with students. See the `README` in the `exercises` folder for information about folder structure.
-
-### Project Folder
-
-The `project` folder should contain all files and instructions necessary for setup. If possible, a set of instructions should be provided for both Udacity workspaces and a way to work locally (for both MacOS and Windows OS). At a minimum, one set of instructions should be provided. A `README` template has been provided in the project folder. This template layout should be used to write your README.
+Udacity course materials remain subject to the copyright and license terms in [`LICENSE.md`](./LICENSE.md). Retain the applicable notices and follow those terms and any separate permissions when using or sharing the materials. This repository is not affiliated with or endorsed by Udacity.
